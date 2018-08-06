@@ -1,58 +1,5 @@
 package problem84
 
-// func largestRectangleArea(heights []int) int {
-// 	hLen := len(heights)
-// 	if hLen == 0 {
-// 		return 0
-// 	}
-
-// 	asc := []int{heights[0]}
-// 	maxArea := heights[0]
-
-// 	for i := 1; i < hLen; i++ {
-// 		if heights[i] > asc[i-1] {
-// 			asc = append(asc, heights[i])
-// 		} else {
-
-// 			drop := []int{}
-// 			for j := 0; j < len(asc); j++ {
-// 				if asc[j] > heights[i] {
-// 					drop = append(drop, asc[j])
-// 					asc[j] = heights[i]
-// 				}
-// 			}
-
-// 			area := getArea(drop)
-// 			if area > maxArea {
-// 				maxArea = area
-// 			}
-
-// 			asc = append(asc, heights[i])
-// 		}
-// 	}
-
-// 	area := getArea(asc)
-// 	if area > maxArea {
-// 		maxArea = area
-// 	}
-
-// 	return maxArea
-// }
-
-// // 计算升序的直方图的最大面积
-// func getArea(asc []int) int {
-// 	area := 0
-// 	aLen := len(asc)
-// 	for i := 0; i < aLen; i++ {
-// 		temp := asc[i] * (aLen - i)
-// 		if temp > area {
-// 			area = temp
-// 		}
-// 	}
-
-// 	return area
-// }
-
 func largestRectangleArea(heights []int) int {
 	h := append(heights, -1)
 	hLen := len(h)
