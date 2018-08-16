@@ -45,6 +45,6 @@ func TestSubsets(t *testing.T) {
 
 	for _, q := range questions {
 		para, ans := q.para, q.ans
-		ast.Equal(subsets(para.one), ans.one, "输入 %v", para.one)
+		ast.Equal(subsets2(para.one), ans.one, "输入 %v", para.one)
 	}
 }
