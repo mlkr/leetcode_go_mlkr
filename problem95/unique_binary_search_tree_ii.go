@@ -91,6 +91,12 @@ func prein2Tree(pre, in []int) *TreeNode {
 		return root
 	}
 
+	// idx 表明 root 节点在 in 中的位置, 还表明左子树在 pre 中的位置
+	// 例:
+	//  (DLR) pre [1,2,3], (LDR) in [2,1,3], root 节点为 1,
+	//  在 in 中的位置 idx = 1, 表明 in 中在 root 前还有 1 num 作为它的左子树,
+	//  所以在 pre 中去除 root 节点后还有 1 num 划为左子树: pre[1:idx+1],
+	//  剩下的为右子树: pre[idx+1:]
 	idx := indexOf(pre[0], in)
 	root.Left = prein2Tree(pre[1:idx+1], in[:idx])
 	root.Right = prein2Tree(pre[idx+1:], in[idx+1:])
