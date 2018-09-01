@@ -61,6 +61,7 @@ func TestIsValidBST(t *testing.T) {
 	for _, q := range questions {
 		para, ans := q.para, q.ans
 		ast.Equal(isValidBST(prein2Tree(para.pre, para.in)), ans.one, "输入 %v", para)
+		ast.Equal(isValidBST2(prein2Tree(para.pre, para.in)), ans.one, "输入 %v", para)
 	}
 }
 

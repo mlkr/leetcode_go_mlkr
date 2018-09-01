@@ -49,3 +49,21 @@ func getInorder(root *TreeNode) []int {
 
 	return res
 }
+
+// 另一种解法
+func isValidBST2(root *TreeNode) bool {
+	// int 最小值 最大值
+	min, max := -1<<63, 1<<63-1
+
+	return recur(min, max, root)
+}
+
+func recur(min, max int, root *TreeNode) bool {
+	if root == nil {
+		return true
+	}
+
+	return min < root.Val && root.Val < max &&
+		recur(min, root.Val, root.Left) &&
+		recur(root.Val, max, root.Right)
+}
