@@ -41,6 +41,73 @@ func recoverTree(root *TreeNode) {
 
 }
 
+// 另一种解法
+func recoverTree2(root *TreeNode) {
+	var first, second, pre *TreeNode
+	var dfs func(root *TreeNode)
+
+	dfs = func(root *TreeNode) {
+		if root.Left != nil {
+			dfs(root.Left)
+		}
+
+		if pre != nil && pre.Val > root.Val {
+			if first == nil {
+				first = pre
+			}
+
+			if first != nil {
+				second = root
+			}
+		}
+
+		pre = root
+
+		if root.Right != nil {
+			dfs(root.Right)
+		}
+	}
+
+	dfs(root)
+
+	first.Val, second.Val = second.Val, first.Val
+}
+
+// 另一种解法(不用闭包)
+func recoverTree3(root *TreeNode) {
+	res := &Res{}
+
+	dfs(root, res)
+
+	res.first.Val, res.second.Val = res.second.Val, res.first.Val
+}
+
+type Res struct {
+	pre, first, second *TreeNode
+}
+
+func dfs(root *TreeNode, res *Res) {
+	if root.Left != nil {
+		dfs(root.Left, res)
+	}
+
+	if res.pre != nil && res.pre.Val > root.Val {
+		if res.first == nil {
+			res.first = res.pre
+		}
+
+		if res.first != nil {
+			res.second = root
+		}
+	}
+
+	res.pre = root
+
+	if root.Right != nil {
+		dfs(root.Right, res)
+	}
+}
+
 func indexOfTreeNode(n *TreeNode, nums []*TreeNode) int {
 	res := -1
 	for k, v := range nums {

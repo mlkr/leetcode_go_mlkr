@@ -53,7 +53,9 @@ func TestRecoverTree(t *testing.T) {
 	for _, q := range questions {
 		para, ans := q.para, q.ans
 		root := prein2Tree(para.pre, para.in)
-		recoverTree(root)
+		// recoverTree(root)
+		// recoverTree2(root)
+		recoverTree3(root)
 		ast.Equal(isValidBST(root), ans.one)
 	}
 }
