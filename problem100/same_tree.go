@@ -69,3 +69,16 @@ func isSameTree(p *TreeNode, q *TreeNode) bool {
 
 	return true
 }
+
+// 另一种递归的解法
+func isSameTree2(p *TreeNode, q *TreeNode) bool {
+	if p == nil && q == nil {
+		return true
+	}
+
+	if p == nil || q == nil {
+		return false
+	}
+
+	return p.Val == q.Val && isSameTree2(p.Left, q.Left) && isSameTree2(p.Right, q.Right)
+}

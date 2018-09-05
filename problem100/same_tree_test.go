@@ -104,6 +104,7 @@ func TestIsSameTree(t *testing.T) {
 		root1 := prein2Tree(para.one.para, para.one.in)
 		root2 := prein2Tree(para.two.para, para.two.in)
 		ast.Equal(isSameTree(root1, root2), ans.one, "输入 %v ", para)
+		ast.Equal(isSameTree2(root1, root2), ans.one, "输入 %v ", para)
 	}
 }
 
