@@ -11,8 +11,7 @@ func isSameTree(p *TreeNode, q *TreeNode) bool {
 		return true
 	}
 
-	if p == nil && q != nil ||
-		p != nil && q == nil {
+	if p == nil || q == nil {
 		return false
 	}
 
