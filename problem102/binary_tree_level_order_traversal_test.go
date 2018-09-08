@@ -52,6 +52,7 @@ func TestLevelOrder(t *testing.T) {
 	for _, q := range questions {
 		para, ans := q.para, q.ans
 		ast.Equal(levelOrder(prein2Tree(para.pre, para.in)), ans.one, "输入 %v", para)
+		ast.Equal(levelOrder2(prein2Tree(para.pre, para.in)), ans.one, "输入 %v", para)
 	}
 
 }
