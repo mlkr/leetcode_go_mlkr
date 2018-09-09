@@ -46,7 +46,7 @@ func reverse(nums []int) {
 	}
 }
 
-// 另一解法
+// 另一解法(最佳)
 func zigzagLevelOrder2(root *TreeNode) [][]int {
 	res := [][]int{}
 	var dfs func(root *TreeNode, idx int)
@@ -63,8 +63,10 @@ func zigzagLevelOrder2(root *TreeNode) [][]int {
 		if idx%2 == 0 {
 			res[idx] = append(res[idx], root.Val)
 		} else {
-			temp := []int{root.Val}
-			res[idx] = append(temp, res[idx]...)
+			temp := make([]int, len(res[idx])+1)
+			temp[0] = root.Val
+			copy(temp[1:], res[idx])
+			res[idx] = temp
 		}
 
 		dfs(root.Left, idx+1)
