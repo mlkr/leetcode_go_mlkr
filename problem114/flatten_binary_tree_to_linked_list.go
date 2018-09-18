@@ -17,6 +17,34 @@ func flatten(root *TreeNode) {
 	root = makeTree(roots)
 }
 
+// 另一解法
+func flatten2(root *TreeNode) {
+	recur(root)
+}
+
+func recur(root *TreeNode) *TreeNode {
+	if root == nil || (root.Left == nil && root.Right == nil) {
+		return root
+	}
+
+	if root.Left == nil {
+		return recur(root.Right)
+	}
+
+	if root.Right == nil {
+		root.Right = root.Left
+		root.Left = nil
+		return recur(root.Right)
+	}
+
+	res := recur(root.Right)
+	recur(root.Left).Right = root.Right
+	root.Right = root.Left
+	root.Left = nil
+
+	return res
+}
+
 func makeTree(roots []*TreeNode) *TreeNode {
 	root := roots[0]
 	temp := root

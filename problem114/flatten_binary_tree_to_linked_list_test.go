@@ -90,7 +90,8 @@ func TestFlatten(t *testing.T) {
 		para, ans := q.para, q.ans
 
 		root := prein2Tree(para.pre, para.in)
-		flatten(root)
+		// flatten(root)
+		flatten2(root)
 
 		pre := preOrder(root)
 		level := levelOrder(root)
