@@ -67,5 +67,6 @@ func TestLadderLength(t *testing.T) {
 	for _, q := range questions {
 		ast.Equal(ladderLength(q.beginWord, q.endWord, q.wordList), q.step, "输入 %v", q)
 		ast.Equal(ladderLength2(q.beginWord, q.endWord, q.wordList), q.step, "输入 %v", q)
+		ast.Equal(ladderLength3(q.beginWord, q.endWord, q.wordList), q.step, "输入 %v", q)
 	}
 }

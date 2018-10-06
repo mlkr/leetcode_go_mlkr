@@ -137,3 +137,71 @@ func ladderLength2(beginWord string, endWord string, wordList []string) int {
 
 	return 0
 }
+
+func ladderLength3(beginWord string, endWord string, wordList []string) int {
+	dict := make(map[string]bool, len(wordList))
+	for _, w := range wordList {
+		dict[w] = true
+	}
+	delete(dict, beginWord)
+
+	dep := 1
+	isEnd := false
+	var bfs func(nodes []string)
+	bfs = func(nodes []string) {
+		dep++
+		nodesLen := len(nodes)
+
+		for w := range dict {
+			canTrans := false
+			for i := 0; i < nodesLen; i++ {
+				if isTransable(nodes[i], w) {
+					canTrans = true
+					delete(dict, w)
+
+					if w == endWord {
+						isEnd = true
+						return
+					}
+				}
+			}
+
+			if canTrans {
+				nodes = append(nodes, w)
+			}
+		}
+
+		nodes = nodes[nodesLen:]
+
+		if len(nodes) == 0 || isEnd {
+			return
+		}
+
+		bfs(nodes)
+	}
+
+	nodes := make([]string, 0, len(wordList))
+	nodes = append(nodes, beginWord)
+	bfs(nodes)
+
+	if !isEnd {
+		return 0
+	}
+	return dep
+}
+
+func isTransable(n, w string) bool {
+	once := false
+	for i := 0; i < len(w); i++ {
+
+		if n[i] != w[i] {
+			if once {
+				return false
+			}
+
+			once = true
+		}
+	}
+
+	return true
+}
