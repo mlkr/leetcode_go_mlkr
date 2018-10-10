@@ -36,6 +36,7 @@ func TestSumNumbers(t *testing.T) {
 	for _, q := range questions {
 		root := prein2Tree(q.pre, q.in)
 		ast.Equal(sumNumbers(root), q.sum)
+		ast.Equal(sumNumbers2(root), q.sum)
 	}
 }
 
