@@ -55,3 +55,11 @@ func Benchmark_calculateMinimumHP(b *testing.B) {
 		}
 	}
 }
+
+func Benchmark_calculateMinimumHP2(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, q := range questions {
+			calculateMinimumHP2(q.para)
+		}
+	}
+}
