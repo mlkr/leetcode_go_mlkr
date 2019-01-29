@@ -53,7 +53,7 @@ func findWords(board [][]byte, words []string) []string {
 	return res
 }
 
-// 解法二
+// 解法二 (最佳)
 func findWords2(board [][]byte, words []string) []string {
 	rows := len(board)
 	cols := len(board[0])
