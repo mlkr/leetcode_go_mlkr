@@ -9,6 +9,7 @@ func containsNearbyAlmostDuplicate(nums []int, k int, t int) bool {
 	used := make(map[int]int, k+1)
 
 	for i, n := range nums {
+		// 例:t=3,n=1或n=2, index=n/t都是同一个
 		index := n / t
 		if n < 0 {
 			index--
