@@ -7,10 +7,6 @@ type TreeNode struct {
 }
 
 func countNodes(root *TreeNode) int {
-	if root == nil {
-		return 0
-	}
-
 	count := 0
 	traverse(root, &count)
 	return count
