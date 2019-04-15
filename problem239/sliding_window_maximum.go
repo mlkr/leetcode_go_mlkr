@@ -1,6 +1,10 @@
 package problem239
 
 func maxSlidingWindow(nums []int, k int) []int {
+	if len(nums) <= 1 || k <= 1 {
+		return nums
+	}
+
 	res := make([]int, 0, len(nums)-k+1)
 	window := make([]int, 0, k)
 	for i, v := range nums {
@@ -38,7 +42,7 @@ func maxSlidingWindow(nums []int, k int) []int {
 // res   3 3 5    5 6 7
 func maxSlidingWindow2(nums []int, k int) []int {
 	size := len(nums)
-	if size <= 1 {
+	if size <= 1 || k <= 1 {
 		return nums
 	}
 
