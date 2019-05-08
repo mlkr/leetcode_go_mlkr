@@ -1,5 +1,7 @@
 package problem273
 
+import "strings"
+
 var lessThan21 = []string{
 	"",
 	"One",
@@ -49,13 +51,21 @@ func numberToWords(num int) string {
 		return "Zero"
 	}
 
+	res := ""
+	i := 0
+	for num > 0 {
+		if num%1000 != 0 {
+			res = lessK(num%1000) + thousand[i] + " " + res
+		}
+		num /= 1000
+		i++
+	}
+
+	return strings.TrimRight(res, " ")
 }
 
 // 处理小于1k的数
 func lessK(num int) string {
-	if num == 0 {
-		return ""
-	}
 
 	if num <= 20 {
 		return lessThan21[num] + " "
@@ -66,5 +76,4 @@ func lessK(num int) string {
 	}
 
 	return lessThan21[num/100] + " Hundred " + lessK(num%100)
-
 }

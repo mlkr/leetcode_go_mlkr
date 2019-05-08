@@ -11,6 +11,16 @@ var questions = []struct {
 	ans  string
 }{
 	{
+		0,
+		"Zero",
+	},
+
+	{
+		1000000,
+		"One Million",
+	},
+
+	{
 		123,
 		"One Hundred Twenty Three",
 	},
