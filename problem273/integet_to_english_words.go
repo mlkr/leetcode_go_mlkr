@@ -67,6 +67,10 @@ func numberToWords(num int) string {
 // 处理小于1k的数
 func lessK(num int) string {
 
+	if num == 0 {
+		return ""
+	}
+
 	if num <= 20 {
 		return lessThan21[num] + " "
 	}
