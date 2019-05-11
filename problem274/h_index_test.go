@@ -23,10 +23,25 @@ func Test_hIndex(t *testing.T) {
 	}
 }
 
+func Test_hIndex2(t *testing.T) {
+	ast := assert.New(t)
+	for _, q := range questions {
+		ast.Equal(q.ans, hIndex2(q.para))
+	}
+}
+
 func Benchmark_hIndex(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, q := range questions {
 			hIndex(q.para)
+		}
+	}
+}
+
+func Benchmark_hIndex2(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, q := range questions {
+			hIndex2(q.para)
 		}
 	}
 }

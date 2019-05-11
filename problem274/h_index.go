@@ -1,5 +1,9 @@
 package problem274
 
+import (
+	"sort"
+)
+
 func hIndex(citations []int) int {
 	quickSort(citations)
 	left, right := 0, len(citations)-1
@@ -11,14 +15,18 @@ func hIndex(citations []int) int {
 		right--
 	}
 
-	i := 0
-	for ; i < len(citations); i++ {
-		if i+1 > citations[i] {
-			break
+	// 二分查找
+	lo, hi := 0, len(citations)
+	for lo <= hi {
+		mi := (lo + hi) / 2
+		if citations[mi] > mi {
+			lo = mi + 1
+		} else {
+			hi = mi - 1
 		}
 	}
 
-	return i
+	return lo
 }
 
 func quickSort(nums []int) {
@@ -45,4 +53,22 @@ func quickSort(nums []int) {
 
 	quickSort(nums[:left])
 	quickSort(nums[left+1:])
+}
+
+// 解法2
+func hIndex2(citations []int) int {
+	sort.Sort(sort.Reverse(sort.IntSlice(citations)))
+
+	// 二分查找
+	lo, hi := 0, len(citations)-1
+	for lo <= hi {
+		mi := (lo + hi) / 2
+		if citations[mi] > mi {
+			lo = mi + 1
+		} else {
+			hi = mi - 1
+		}
+	}
+
+	return lo
 }
