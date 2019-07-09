@@ -32,10 +32,10 @@ var questions2 = []struct {
 
 func Test_NumMatrix(t *testing.T) {
 	ast := assert.New(t)
-	// numMatrix := Constructor(matrix)
-	// for _, q := range questions {
-	// 	ast.Equal(q.ans, numMatrix.SumRegion(q.row1, q.col1, q.row2, q.col2))
-	// }
+	numMatrix := Constructor(matrix)
+	for _, q := range questions {
+		ast.Equal(q.ans, numMatrix.SumRegion(q.row1, q.col1, q.row2, q.col2))
+	}
 
 	numMatrix2 := Constructor(matrix2)
 	for _, q := range questions2 {
