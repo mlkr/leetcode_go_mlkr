@@ -27,6 +27,7 @@ func removeDuplicateLetters(s string) string {
 	return string(s[begin]) + removeDuplicateLetters(strings.Replace(s[begin+1:], string(s[begin]), "", -1))
 }
 
+// 更快的解法
 func removeDuplicateLetters2(s string) string {
 	counts := [26]int{}
 	for i := range s {
