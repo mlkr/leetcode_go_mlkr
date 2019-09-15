@@ -87,7 +87,7 @@ func (h *IntHeap) Pop() interface{} {
 	return res
 }
 
-// 解法三
+// 解法三(最快)
 func findKthLargest3(nums []int, k int) int {
 	nums = append([]int{}, nums...)
 	return partition(nums, k)
