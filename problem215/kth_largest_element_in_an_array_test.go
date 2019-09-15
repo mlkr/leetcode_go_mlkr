@@ -41,6 +41,14 @@ func Test_findKthLargest2(t *testing.T) {
 		ast.Equal(findKthLargest2(q.input, q.k), q.output)
 	}
 }
+
+func Test_findKthLargest3(t *testing.T) {
+	ast := assert.New(t)
+	for _, q := range questions {
+		ast.Equal(findKthLargest3(q.input, q.k), q.output)
+	}
+}
+
 func Benchmark_findKthLargest(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, q := range questions {
@@ -53,6 +61,14 @@ func Benchmark_findKthLargest2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, q := range questions {
 			findKthLargest2(q.input, q.k)
+		}
+	}
+}
+
+func Benchmark_findKthLargest3(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, q := range questions {
+			findKthLargest3(q.input, q.k)
 		}
 	}
 }

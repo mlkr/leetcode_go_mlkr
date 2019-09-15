@@ -86,3 +86,40 @@ func (h *IntHeap) Pop() interface{} {
 	*h = (*h)[0 : len(*h)-1]
 	return res
 }
+
+// 解法三
+func findKthLargest3(nums []int, k int) int {
+	nums = append([]int{}, nums...)
+	return partition(nums, k)
+}
+
+func partition(nums []int, k int) int {
+	size := len(nums)
+	mid := size / 2
+	pivot := nums[mid]
+	nums[0], nums[mid] = nums[mid], nums[0]
+
+	n := size - 1
+	for i := size - 1; i > 0; i-- {
+		if nums[i] >= pivot {
+			nums[i], nums[n] = nums[n], nums[i]
+			n--
+		}
+	}
+
+	nums[0], nums[n] = nums[n], nums[0]
+
+	if size-n == k {
+		return pivot
+	}
+
+	if size-n > k {
+		nums = append([]int{}, nums[n+1:]...)
+		return partition(nums, k)
+	}
+
+	k = k - (size - n)
+	nums = append([]int{}, nums[:n]...)
+
+	return partition(nums, k)
+}
