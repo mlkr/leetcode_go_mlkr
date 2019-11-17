@@ -19,6 +19,7 @@ func palindromePairs(words []string) [][]int {
 			left := words[i][:k]
 			right := words[i][k:]
 
+			// len(left) != 0 为了防止重复添加
 			if len(left) != 0 && isPalindrome(left) {
 				rightRev := reverse(right)
 				j, ok := hash[rightRev]
