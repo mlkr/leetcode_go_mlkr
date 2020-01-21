@@ -30,6 +30,11 @@ func TestSolveNQueens(t *testing.T) {
 				[]string{"..Q.", "Q...", "...Q", ".Q.."},
 			}},
 		},
+
+		question{
+			para{0},
+			ans{[][]string{}},
+		},
 	}
 
 	for _, q := range questions {
