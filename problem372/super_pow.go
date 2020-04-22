@@ -9,19 +9,18 @@ func superPow(a int, b []int) int {
 
 	var powmod func(a, k int) int
 	powmod = func(a, k int) int {
-		res := 1
 		if k == 0 {
-			return res
+			return 1
 		}
 
+		// k 为奇数
 		if k%2 == 1 {
-			res = (a * powmod(a, k-1)) % base
-		} else {
-			sub := powmod(a, k/2)
-			res = (sub * sub) % base
+			return (a * powmod(a, k-1)) % base
 		}
 
-		return res
+		// k 为偶数
+		sub := powmod(a, k/2)
+		return (sub * sub) % base
 	}
 
 	size := len(b)
