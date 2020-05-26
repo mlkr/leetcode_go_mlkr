@@ -53,6 +53,5 @@ func (this *RandomizedSet) Remove(val int) bool {
 
 /** Get a random element from the set. */
 func (this *RandomizedSet) GetRandom() int {
-	size := len(this.nums)
-	return this.nums[rand.Intn(size)%size]
+	return this.nums[rand.Intn(len(this.nums))]
 }
