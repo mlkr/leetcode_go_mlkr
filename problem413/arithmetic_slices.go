@@ -1,6 +1,9 @@
 package problem413
 
 // 参看
+// 1 2 3 	    1
+// 1 2 3 4	    2
+// 1 2 3 4 5	3
 // https://blog.csdn.net/camellhf/article/details/52824234
 func numberOfArithmeticSlices(A []int) int {
 	added := 0
