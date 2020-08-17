@@ -14,3 +14,4 @@
 # Debug
 debug
 *.data
+.vscode
