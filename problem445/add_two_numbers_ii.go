@@ -11,14 +11,11 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 
 	size1 := len(n1)
 	size2 := len(n2)
-	if size1 > size2 {
-		n1, n2 = n2, n1
-		size1, size2 = size2, size1
-	}
 
 	res := byte(0)
-	head := &ListNode{}
-	for i := 1; i <= size1 || i <= size2; i++ {
+	var head *ListNode
+	head = nil
+	for i := 1; i <= size1 || i <= size2 || res > 0; i++ {
 		if i <= size1 {
 			res += n1[size1-i]
 		}
@@ -27,21 +24,14 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 			res += n2[size2-i]
 		}
 
-		node := &ListNode{Val: int(res)%10}
-		if head.Next != nil {
-			node.Next = head.Next
-		}
-		head.Next = node
-
+		node := &ListNode{Val: int(res) % 10}
 		res /= 10
+
+		node.Next = head
+		head = node
 	}
 
-	if res == 1 {
-		pre := head.Next
-		head.Next = &ListNode{Val:1, Next:pre}
-	}
-
-	return head.Next
+	return head
 }
 
 func list2Num(root *ListNode) []byte {

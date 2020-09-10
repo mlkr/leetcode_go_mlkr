@@ -12,7 +12,7 @@ var questions = []struct {
 	{
 		[]byte{5},
 		[]byte{5},
-		[]byte{1,0},
+		[]byte{1, 0},
 	},
 
 	{
@@ -21,12 +21,11 @@ var questions = []struct {
 		[]byte{7, 8, 0, 7},
 	},
 
-		{
+	{
 		[]byte{},
 		[]byte{5, 6, 4},
 		[]byte{5, 6, 4},
 	},
-
 }
 
 func Test_addTwoNumbers(t *testing.T) {
@@ -52,13 +51,14 @@ func Benchmark_addTwoNumbers(b *testing.B) {
 	}
 }
 
-func num2List(nums []byte) *ListNode{
-	head := &ListNode{}
-	cur := head
-	for _, num := range nums {
-		cur.Next = &ListNode{Val: int(num)}
-		cur = cur.Next
+func num2List(nums []byte) *ListNode {
+	var head *ListNode
+	head = nil
+	for i := len(nums) - 1; i >= 0; i-- {
+		node := &ListNode{Val: int(nums[i])}
+		node.Next = head
+		head = node
 	}
 
-	return head.Next
+	return head
 }
