@@ -56,8 +56,11 @@ func Test_pathSum(t *testing.T) {
 	}
 }
 
+// 和堆排序有点像
+//  0 1  2 3 4 5    6  7  8  9   10
 // 10,5,-3,3,2,null,11,3,-2,null,1
 // 2n+1
+// 2(n+1) + 1 = 2n + 3
 func nodes2Tree(ints []Int) *TreeNode {
 	root := &TreeNode{Val: ints[0].num}
 
