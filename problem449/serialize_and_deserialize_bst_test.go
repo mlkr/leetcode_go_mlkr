@@ -23,6 +23,10 @@ var questions = []struct {
 	{
 		nil,
 	},
+
+	{
+		[]int{-1},
+	},
 }
 
 func Test_serialize(t *testing.T) {
