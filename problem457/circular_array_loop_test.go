@@ -11,6 +11,11 @@ var questions = []struct {
 	ans  bool
 }{
 	{
+		[]int{1, -1, 2, 4, 4},
+		true,
+	},
+
+	{
 		[]int{2, -1, 1, 2, 2},
 		true,
 	},
