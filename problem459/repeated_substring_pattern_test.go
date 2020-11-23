@@ -10,10 +10,10 @@ var questions = []struct {
 	s   string
 	ans bool
 }{
-	// {
-	// 	"abab",
-	// 	true,
-	// },
+	{
+		"abab",
+		true,
+	},
 
 	{
 		"aba",

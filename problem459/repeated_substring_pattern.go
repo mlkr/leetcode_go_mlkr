@@ -23,10 +23,7 @@ func repeatedSubstringPattern2(s string) bool {
 		}
 
 		j := 0
-		for j+i < size {
-			if s[j] != s[j+i] {
-				break
-			}
+		for j+i < size && s[j] == s[j+i] {
 			j++
 		}
 
