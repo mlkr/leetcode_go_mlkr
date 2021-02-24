@@ -17,12 +17,12 @@ func makesquare(nums []int) bool {
 		return false
 	}
 
-	sort.Sort(sort.Reverse(sort.IntSlice(nums)))
-
 	avg := sum / 4
 	if nums[0] > avg {
 		return false
 	}
+
+	sort.Sort(sort.Reverse(sort.IntSlice(nums)))
 
 	var dfs func(index int, edges [4]int) bool
 	dfs = func(index int, edges [4]int) bool {

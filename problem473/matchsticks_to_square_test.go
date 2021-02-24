@@ -35,6 +35,7 @@ var questions = []struct {
 		false,
 	},
 
+	// seen的用处，看这个例子
 	{
 		[]int{5, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3},
 		true,
