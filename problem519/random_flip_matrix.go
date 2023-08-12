@@ -11,14 +11,12 @@ type Solution struct {
 }
 
 func Constructor(m int, n int) Solution {
-	s := Solution{
+	return Solution{
 		rec: make(map[int]int),
 		m:   m,
 		n:   n,
 		sum: m * n,
 	}
-
-	return s
 }
 
 // 0 1 2
@@ -50,15 +48,14 @@ func (this *Solution) Flip() []int {
 
 	x := redire / this.n
 	y := redire % this.n
-	res := []int{x, y}
-
 	this.sum--
+
 	this.rec[index] = this.sum
 	if val, ok := this.rec[this.sum]; ok {
 		this.rec[index] = val
 	}
 
-	return res
+	return []int{x, y}
 
 }
 
