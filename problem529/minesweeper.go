@@ -60,12 +60,13 @@ func bfs(board [][]byte, x, y int) [][]byte {
 
 func getBombs(board [][]byte, x, y int) int {
 	bombs := 0
+	m, n := len(board), len(board[0])
 
 	for i := 0; i < 8; i++ {
 		nextX := x + dx[i]
 		nextY := y + dy[i]
-		if nextX > -1 && nextX < len(board) &&
-			nextY > -1 && nextY < len(board[0]) {
+		if nextX > -1 && nextX < m &&
+			nextY > -1 && nextY < n {
 			if board[nextX][nextY] == 'M' {
 				bombs++
 			}
