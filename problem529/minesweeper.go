@@ -75,3 +75,49 @@ func getBombs(board [][]byte, x, y int) int {
 
 	return bombs
 }
+
+// dfs 更快
+func updateBoard2(board [][]byte, click []int) [][]byte {
+	x := click[0]
+	y := click[1]
+
+	if board[x][y] == 'M' {
+		board[x][y] = 'X'
+		return board
+	}
+
+	m := len(board)
+	n := len(board[0])
+	had := make(map[int]bool, m*n)
+
+	var dfs func(x, y int)
+	dfs = func(x, y int) {
+		had[x*n+y] = true
+
+		bombs := getBombs(board, x, y)
+		if bombs == 0 {
+			board[x][y] = 'B'
+
+			for i := 0; i < 8; i++ {
+				nextX := x + dx[i]
+				nextY := y + dy[i]
+				if nextX < 0 || nextY < 0 || nextX > m-1 || nextY > n-1 {
+					continue
+				}
+
+				if had[nextX*n+nextY] {
+					continue
+				}
+
+				dfs(nextX, nextY)
+			}
+			return
+		}
+
+		board[x][y] = '0' + byte(bombs)
+	}
+
+	dfs(x, y)
+
+	return board
+}
