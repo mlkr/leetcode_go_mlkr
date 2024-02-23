@@ -34,7 +34,7 @@ func remove(boxes []int, dp [][][]int, l, r, k int) int {
 	// 	k++
 	// }
 
-	// 直接去掉相同颜色的盒子
+	// 直接去掉相同颜色的盒子，把右侧的 k 个元素和 boxes[r] 现在就清除掉
 	res := (k+1)*(k+1) + remove(boxes, dp, l, r-1, 0)
 
 	for i := r - 1; i >= l; i-- {
