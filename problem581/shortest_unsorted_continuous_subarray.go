@@ -26,5 +26,3 @@ func findUnsortedSubarray(nums []int) int {
 
 	return right - left + 1
 }
-
-// 2 6 4 15 10 8 9
