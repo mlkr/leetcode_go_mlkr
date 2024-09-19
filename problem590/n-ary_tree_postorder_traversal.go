@@ -11,12 +11,10 @@ func postorder(root *Node) []int {
 		return res
 	}
 
-	if root.Children != nil {
-		for _, c := range root.Children {
-			res = append(res, postorder(c)...)
-		}
+	for _, c := range root.Children {
+		res = append(res, postorder(c)...)
 	}
-
 	res = append(res, root.Val)
+
 	return res
 }
