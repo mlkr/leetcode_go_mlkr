@@ -14,6 +14,7 @@ func validSquare(p1 []int, p2 []int, p3 []int, p4 []int) bool {
 
 	sort.Ints(distances)
 
+	// 正方形 四边相等 对角线相等
 	return distances[0] > 0 &&
 		distances[0] == distances[1] &&
 		distances[1] == distances[2] &&
