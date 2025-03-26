@@ -1,13 +1,5 @@
 package problem623
 
-/**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
@@ -16,42 +8,37 @@ type TreeNode struct {
 
 func addOneRow(root *TreeNode, val int, depth int) *TreeNode {
 	if depth == 1 {
-		r := &TreeNode{
-			Val:   val,
-			Left:  root,
-			Right: nil,
+		node := &TreeNode{
+			Val:  val,
+			Left: root,
 		}
 
-		return r
+		return node
 	}
 
 	dfs(root, val, depth)
-
 	return root
 }
 
-func dfs(root *TreeNode, val int, depth int) {
+func dfs(root *TreeNode, val, depth int) {
 	if root == nil {
 		return
 	}
 
-	depth -= 1
+	depth--
 	if depth == 1 {
-		l := &TreeNode{
-			Val:   val,
-			Left:  root.Left,
-			Right: nil,
+		left := &TreeNode{
+			Val:  val,
+			Left: root.Left,
 		}
 
-		r := &TreeNode{
+		right := &TreeNode{
 			Val:   val,
-			Left:  nil,
 			Right: root.Right,
 		}
 
-		root.Left = l
-		root.Right = r
-
+		root.Left = left
+		root.Right = right
 		return
 	}
 
