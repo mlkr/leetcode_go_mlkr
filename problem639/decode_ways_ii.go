@@ -33,12 +33,11 @@ func init() {
 
 	// 1-9
 	setVal("*", 9)
+	setVal("1*", 9)
+	setVal("2*", 6)
 
 	// 11-19 21-26
 	setVal("**", 15)
-
-	setVal("1*", 9)
-	setVal("2*", 6)
 
 	for _, r := range "0123456" {
 		setVal("*"+string(r), 2)
