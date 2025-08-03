@@ -1,17 +1,15 @@
 package problem641
 
 type MyCircularDeque struct {
-	nums        []int
-	size        int
-	front, last int
+	num   []int
+	count int
+	f, r  int
 }
 
 func Constructor(k int) MyCircularDeque {
-	mcd := MyCircularDeque{
-		nums: make([]int, k),
+	return MyCircularDeque{
+		num: make([]int, k),
 	}
-
-	return mcd
 }
 
 func (this *MyCircularDeque) InsertFront(value int) bool {
@@ -19,14 +17,16 @@ func (this *MyCircularDeque) InsertFront(value int) bool {
 		return false
 	}
 
-	n := len(this.nums)
-	if !this.IsEmpty() {
-		this.front = (this.front + n - 1) % n
+	if this.IsEmpty() {
+		this.f = 1
+		this.r = 0
 	}
 
-	this.nums[this.front] = value
-	this.size++
+	size := len(this.num)
+	this.f = (this.f - 1 + size) % size
+	this.num[this.f] = value
 
+	this.count++
 	return true
 }
 
@@ -35,14 +35,16 @@ func (this *MyCircularDeque) InsertLast(value int) bool {
 		return false
 	}
 
-	n := len(this.nums)
-	if !this.IsEmpty() {
-		this.last = (this.last + 1) % n
+	if this.IsEmpty() {
+		this.r = -1
+		this.f = 0
 	}
 
-	this.nums[this.last] = value
-	this.size++
+	size := len(this.num)
+	this.r = (this.r + 1) % size
+	this.num[this.r] = value
 
+	this.count++
 	return true
 }
 
@@ -51,15 +53,10 @@ func (this *MyCircularDeque) DeleteFront() bool {
 		return false
 	}
 
-	this.size--
-	if this.IsEmpty() {
-		this.front, this.last = 0, 0
-		return true
-	}
+	size := len(this.num)
+	this.f = (this.f + 1) % size
 
-	n := len(this.nums)
-	this.front = (this.front + 1) % n
-
+	this.count--
 	return true
 }
 
@@ -68,15 +65,10 @@ func (this *MyCircularDeque) DeleteLast() bool {
 		return false
 	}
 
-	this.size--
-	if this.IsEmpty() {
-		this.front, this.last = 0, 0
-		return true
-	}
+	size := len(this.num)
+	this.r = (this.r - 1 + size) % size
 
-	n := len(this.nums)
-	this.last = (this.last + n - 1) % n
-
+	this.count--
 	return true
 }
 
@@ -85,7 +77,7 @@ func (this *MyCircularDeque) GetFront() int {
 		return -1
 	}
 
-	return this.nums[this.front]
+	return this.num[this.f]
 }
 
 func (this *MyCircularDeque) GetRear() int {
@@ -93,13 +85,13 @@ func (this *MyCircularDeque) GetRear() int {
 		return -1
 	}
 
-	return this.nums[this.last]
+	return this.num[this.r]
 }
 
 func (this *MyCircularDeque) IsEmpty() bool {
-	return this.size == 0
+	return this.count == 0
 }
 
 func (this *MyCircularDeque) IsFull() bool {
-	return this.size == len(this.nums)
+	return this.count == len(this.num)
 }
