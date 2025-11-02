@@ -11,6 +11,10 @@ func minSteps(n int) int {
 	}
 
 	// n 最小因数是多少？
+	// n=12 minSteps=7
+	// 111111 111111
+	// 111 111
+	// 1 1 1
 	i := 2
 	for i*i <= n {
 		if n%i == 0 {
