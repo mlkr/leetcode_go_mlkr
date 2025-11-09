@@ -91,14 +91,10 @@ func str2Tree(str string) *TreeNode {
 	index := 1
 	for !que.isEmpty() && index < len(parts) {
 		now := que.Dequeue()
-		if now == nil {
-			continue
-		}
 
 		// 左子树
 		if parts[index] == "null" {
 			now.Left = nil
-			que.Enqueue(nil)
 		} else {
 			leftVal, _ := strconv.Atoi(parts[index])
 			left := &TreeNode{Val: leftVal}
@@ -114,7 +110,6 @@ func str2Tree(str string) *TreeNode {
 		// 右子树
 		if parts[index] == "null" {
 			now.Right = nil
-			que.Enqueue(nil)
 		} else {
 			rightVal, _ := strconv.Atoi(parts[index])
 			right := &TreeNode{Val: rightVal}
