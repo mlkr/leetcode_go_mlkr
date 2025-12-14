@@ -1,50 +1,52 @@
 package problem658
 
 func findClosestElements(arr []int, k int, x int) []int {
-	index := getIndex(arr, x)
-	if index == -1 {
+	idx := getIndex(arr, x)
+	if idx == 0 {
 		return arr[:k]
 	}
 
-	if index == len(arr) {
-		return arr[len(arr)-k : len(arr)]
+	size := len(arr)
+	if idx == size-1 {
+		return arr[size-k : size]
 	}
 
-	left := index
-	right := index + 1
+	left := idx
+	right := idx + 1
 	for right-left < k {
 		if left == 0 {
 			right++
 			continue
 		}
 
-		if right == len(arr) {
+		if right == size {
 			left--
 			continue
 		}
 
 		if x-arr[left-1] <= arr[right]-x {
 			left--
-			continue
+		} else {
+			right++
 		}
 
-		right++
 	}
 
 	return arr[left:right]
 }
 
 func getIndex(arr []int, x int) int {
-	if x < arr[0] {
-		return -1
+	if arr[0] >= x {
+		return 0
 	}
 
-	for i := 0; i < len(arr); i++ {
+	size := len(arr)
+	for i := 1; i < size; i++ {
 		if arr[i] == x {
 			return i
 		}
 
-		if arr[i] > x && (i-1 >= 0 && x > arr[i-1]) {
+		if arr[i] > x {
 			if x-arr[i-1] <= arr[i]-x {
 				return i - 1
 			}
@@ -53,5 +55,5 @@ func getIndex(arr []int, x int) int {
 		}
 	}
 
-	return len(arr)
+	return size - 1
 }
