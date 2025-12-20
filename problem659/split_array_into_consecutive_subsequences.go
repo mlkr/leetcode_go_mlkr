@@ -37,21 +37,20 @@ func isPossible(nums []int) bool {
 			return false
 		}
 
-		pre = cur
-
 		if count <= l3p {
 			// 剩余的cur 全部分配给l3p序列
 			l3p = count + l2
 			l2 = l1
 			l1 = 0
-			continue
+		} else {
+			// 剩余的cur的数量 比l3p数量多
+			nextl1 := count - l3p
+			l3p += l2
+			l2 = l1
+			l1 = nextl1
 		}
 
-		// 剩余的cur的数量 比l3p数量多
-		newl1 := count - l3p
-		l3p += l2
-		l2 = l1
-		l1 = newl1
+		pre = cur
 	}
 
 	return l1 == 0 && l2 == 0
