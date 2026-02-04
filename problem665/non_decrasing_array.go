@@ -3,25 +3,24 @@ package problem665
 import "sort"
 
 func checkPossibility(nums []int) bool {
-	size := len(nums)
-	for i := 1; i < size; i++ {
+	for i := 1; i < len(nums); i++ {
 		if nums[i-1] > nums[i] {
-			pre := deepCopy(nums)
-			pre[i] = pre[i-1]
+			pre := nums[i-1]
+			next := nums[i]
 
-			next := deepCopy(nums)
-			next[i-1] = next[i]
+			nums[i-1] = next
+			if sort.IntsAreSorted(nums) {
+				return true
+			}
 
-			return sort.IsSorted(sort.IntSlice(pre)) || sort.IsSorted(sort.IntSlice(next))
+			nums[i-1], nums[i] = pre, pre
+			if sort.IntsAreSorted(nums) {
+				return true
+			}
+
+			return false
 		}
 	}
 
 	return true
-}
-
-func deepCopy(nums []int) []int {
-	numsC := make([]int, len(nums))
-	copy(numsC, nums)
-
-	return numsC
 }
